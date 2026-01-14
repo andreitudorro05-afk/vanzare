@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flori de vânzare 🌸</title>
+<style>
+/* GLOBAL STYLING */
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #fdf1f5, #ffe6f0);
+  color:#222;
+}
+header{
+  background:#ff4081;
+  color:white;
+  padding:30px 10px;
+  text-align:center;
+  animation:fadeIn 1s;
+}
+header h1{
+  font-size:2.5em;
+  margin:0;
+}
+nav{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  background:#f50057;
+}
+nav a{
+  padding:15px 25px;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  transition:0.3s;
+}
+nav a:hover{
+  background:#c51162;
+  transform:scale(1.05);
+}
+section{
+  display:none;
+  padding:40px 20px;
+  animation:slideIn 0.5s;
+}
+section.active{display:block;}
+.products{
+  display:grid;
+  gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+}
+.card{
+  background:linear-gradient(to bottom right,#ff80ab,#ff4081);
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 6px 15px rgba(0,0,0,0.15);
+  text-align:center;
+  transition:transform 0.3s, box-shadow 0.3s;
+}
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 12px 20px rgba(0,0,0,0.25);
+}
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-bottom:2px solid white;
+}
+.card h3{
+  margin:10px 0;
+  color:white;
+}
+.card p{
+  font-weight:bold;
+  color:white;
+}
+button{
+  margin:5px;
+  padding:8px 12px;
+  border:none;
+  border-radius:5px;
+  background:#ff1744;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+button:hover{
+  background:#d50000;
+  transform:scale(1.05);
+}
+
+/* CART */
+.cart{
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  max-width:600px;
+  margin:auto;
+}
+input{
+  width:100%;
+  padding:8px;
+  margin:6px 0;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:15px;
+  background:#f50057;
+  color:white;
+  margin-top:40px;
+}
+
+/* ANIMATIONS */
+@keyframes slideIn{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  nav a{padding:10px;}
+  .card img{height:150px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌸 Flori de vânzare</h1>
+  <p>Magazin online – colorat, dinamic și mobil friendly!</p>
+</header>
+
+<nav>
+  <a href="#" onclick="show('home')">Acasă</a>
+  <a href="#" onclick="show('catalog')">Catalog</a>
+  <a href="#" onclick="show('promo')">Promoții</a>
+  <a href="#" onclick="show('cart')">Coș</a>
+  <a href="#" onclick="show('order')">Comandă</a>
+  <a href="#" onclick="show('about')">Despre noi</a>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="active">
+  <h2>Bine ai venit!</h2>
+  <p>Flori proaspete, livrare rapidă, design colorat și dinamic!</p>
+</section>
+
+<!-- CATALOG -->
+<section id="catalog">
+  <h2>🌼 Catalog Flori</h2>
+  <div class="products">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
+      <h3>Trandafiri</h3>
+      <p>50 lei</p>
+      <button onclick="add('Trandafiri',50)">Adaugă</button>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946">
+      <h3>Lalele</h3>
+      <p>40 lei</p>
+      <button onclick="add('Lalele',40)">Adaugă</button>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6">
+      <h3>Orhidee</h3>
+      <p>70 lei</p>
+      <button onclick="add('Orhidee',70)">Adaugă</button>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92">
+      <h3>Buchet mixt</h3>
+      <p>60 lei</p>
+      <button onclick="add('Buchet mixt',60)">Adaugă</button>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec7">
+      <h3>Garoafe</h3>
+      <p>35 lei</p>
+      <button onclick="add('Garoafe',35)">Adaugă</button>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1529429613230-57d021f9b63b">
+      <h3>Crizanteme</h3>
+      <p>45 lei</p>
+      <button onclick="add('Crizanteme',45)">Adaugă</button>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec8">
+      <h3>Margarete</h3>
+      <p>30 lei</p>
+      <button onclick="add('Margarete',30)">Adaugă</button>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec9">
+      <h3>Crini</h3>
+      <p>55 lei</p>
+      <button onclick="add('Crini',55)">Adaugă</button>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec10">
+      <h3>Flori de câmp</h3>
+      <p>25 lei</p>
+      <button onclick="add('Flori de câmp',25)">Adaugă</button>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec11">
+      <h3>Orhidee roz</h3>
+      <p>75 lei</p>
+      <button onclick="add('Orhidee roz',75)">Adaugă</button>
+    </div>
+  </div>
+</section>
+
+<!-- PROMOȚII -->
+<section id="promo">
+  <h2>🔥 Promoții</h2>
+  <p>Toate trandafirii -10% până la sfârșitul lunii!</p>
+</section>
+
+<!-- COȘ -->
+<section id="cart">
+  <h2>🛒 Coș cumpărături</h2>
+  <div class="cart">
+    <ul id="list"></ul>
+    <p><strong>Total:</strong> <span id="sum">0</span> lei</p>
+    <button onclick="clearCart()">Golește coșul</button>
+  </div>
+</section>
+
+<!-- COMANDĂ -->
+<section id="order">
+  <h2>📦 Finalizare comandă</h2>
+  <div class="cart">
+    <input id="name" placeholder="Nume complet">
+    <input id="addr" placeholder="Adresă livrare">
+    <input id="phone" placeholder="Telefon">
+    <button onclick="sendOrder()">Trimite comanda</button>
+  </div>
+</section>
+
+<!-- DESPRE NOI -->
+<section id="about">
+  <h2>💐 Despre noi</h2>
+  <p>Suntem o florărie online cu flori proaspete, livrare rapidă și servicii personalizate. Echipa noastră iubește florile!</p>
+</section>
+
+<footer>
+  © 2026 Flori de vânzare 🌸
+</footer>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function show(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  updateCart();
+}
+
+function save(){ localStorage.setItem("cart",JSON.stringify(cart)); }
+
+function add(name,price){
+  let item = cart.find(x=>x.name==name);
+  if(item) item.qty++;
+  else cart.push({name,price,qty:1});
+  save(); updateCart();
+}
+
+function updateCart(){
+  let html="", total=0;
+  cart.forEach((i,k)=>{
+    total += i.price*i.qty;
+    html += `<li>${i.name} - ${i.price} lei x ${i.qty}
+    <button onclick="change(${k},1)">+</button>
+    <button onclick="change(${k},-1)">-</button>
+    <button onclick="removeItem(${k})">❌</button>
+    </li>`;
+  });
+  document.getElementById("list").innerHTML = html;
+  document.getElementById("sum").innerText = total;
+  save();
+}
+
+function change(i,v){
+  cart[i].qty+=v;
+  if(cart[i].qty<1) cart.splice(i,1);
+  updateCart();
+}
+
+function removeItem(i){ cart.splice(i,1); updateCart(); }
+
+function clearCart(){ cart=[]; updateCart(); }
+
+function sendOrder(){
+  if(!cart.length){ alert("Coșul este gol!"); return; }
+  alert("Comanda ta a fost trimisă cu succes! 🌸");
+  clearCart();
+}
+
+updateCart();
+</script>
+</body>
+</html>
